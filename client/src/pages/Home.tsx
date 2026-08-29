@@ -121,7 +121,7 @@ export default function Home() {
       <header className="site-header">
         <a className="brand" href="#top" onClick={closeMenu} aria-label="fliptransfert, retour en haut">
           <span className="brand-mark" aria-hidden="true">
-            <img src={asset("/manus-storage/fliptransfert-logo_fbbb2bf4.png", "fliptransfert-logo.png")} alt="" />
+            <img src={asset("/manus-storage/fliptransfert-logo_fbbb2bf4.png", "fliptransfert-logo.webp")} alt="" />
           </span>
           <span className="brand-name">flip<span>transfert</span></span>
         </a>
@@ -166,7 +166,7 @@ export default function Home() {
             <div className="hero-visual" aria-label="Illustration du transfert entre un téléphone et un Flipper Zero">
               <div className="coordinate coordinate-top">N 48° 51′ 24″ &nbsp; / &nbsp; LINK 001</div>
               <div className="visual-card">
-                <img src={asset("/manus-storage/fliptransfert-hero_0acd4e22.png", "fliptransfert-hero.png")} alt="Téléphone relié par un câble orange à un Flipper Zero" />
+                <img src={asset("/manus-storage/fliptransfert-hero_0acd4e22.png", "fliptransfert-hero.webp")} alt="Téléphone relié par un câble orange à un Flipper Zero" />
                 <div className="visual-stamp"><span>TRANSFER</span><strong>READY</strong></div>
                 <span className="visual-corner visual-corner-tl" />
                 <span className="visual-corner visual-corner-br" />
@@ -231,7 +231,7 @@ export default function Home() {
         <section className="equipment-section" id="materiel">
           <div className="container equipment-grid">
             <div className="equipment-image">
-              <img src={asset("/manus-storage/fliptransfert-process_2bb86617.png", "fliptransfert-process.png")} alt="Téléphone, câble USB, carte microSD et Flipper Zero sur un bureau clair" loading="lazy" />
+              <img src={asset("/manus-storage/fliptransfert-process_2bb86617.png", "fliptransfert-process.webp")} alt="Téléphone, câble USB, carte microSD et Flipper Zero sur un bureau clair" loading="lazy" />
               <span className="image-label label-one">SOURCE</span>
               <span className="image-label label-two">LINK</span>
               <span className="image-label label-three">TARGET</span>
@@ -263,7 +263,7 @@ export default function Home() {
               </div>
             </div>
             <div className="detail-image">
-              <img src={asset("/manus-storage/fliptransfert-detail_9d64ac0e.png", "fliptransfert-detail.png")} alt="Détail d’un câble orange entre un téléphone et un Flipper Zero" loading="lazy" />
+              <img src={asset("/manus-storage/fliptransfert-detail_9d64ac0e.png", "fliptransfert-detail.webp")} alt="Détail d’un câble orange entre un téléphone et un Flipper Zero" loading="lazy" />
               <div className="detail-callout"><span className="callout-line" /> <strong>CHECK</strong><span>01—03</span></div>
             </div>
           </div>
@@ -290,7 +290,7 @@ export default function Home() {
 
       <footer className="site-footer">
         <div className="container footer-inner">
-          <a className="brand footer-brand" href="#top"><span className="brand-mark"><img src={asset("/manus-storage/fliptransfert-logo_fbbb2bf4.png", "fliptransfert-logo.png")} alt="" /></span><span className="brand-name">flip<span>transfert</span></span></a>
+          <a className="brand footer-brand" href="#top"><span className="brand-mark"><img src={asset("/manus-storage/fliptransfert-logo_fbbb2bf4.png", "fliptransfert-logo.webp")} alt="" /></span><span className="brand-name">flip<span>transfert</span></span></a>
           <p>Un guide simple pour passer du téléphone au Flipper Zero.</p>
           <div className="footer-links"><a href="#parcours">Le parcours</a><a href="#checklist">Checklist</a><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub <Github size={14} /></a></div>
         </div>
