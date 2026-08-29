@@ -1,70 +1,78 @@
-# Direction artistique — fliptransfert
+# CyberLearn — Direction artistique et pédagogique
 
-## Trois pistes initiales
+## Positionnement
 
-### 1. Signal de poche
-**Very Brief Intro:** Une identité éditoriale et technique inspirée des interfaces de diagnostic, avec orange signal, blanc chaud et typographie condensée. Le site donne l’impression d’un outil fiable, direct et fait pour passer à l’action.
+CyberLearn est une plateforme d’apprentissage accessible pour comprendre la cybersécurité par la pratique. Elle s’adresse aux débutants curieux, aux étudiants et aux profils techniques qui veulent progresser par petits modules, sans jargon gratuit ni promesse de piratage irréaliste.
 
-**Probability:** 0.07
+## Architecture pédagogique
 
-### 2. Atelier solaire
-**Very Brief Intro:** Une esthétique plus douce, artisanale et lumineuse, mêlant crème, orange mandarine, papier texturé et schémas dessinés. Le ton rend le transfert accessible aux débutants.
+| Parcours | Promesse | Modules de démonstration |
+|---|---|---|
+| Fondamentaux | Comprendre les menaces et les bons réflexes | Menaces courantes, mots de passe, authentification |
+| Réseaux | Lire les échanges et repérer les anomalies | IP, DNS, HTTP, analyse de trafic |
+| Défense | Réagir à un incident de façon méthodique | Journalisation, triage, réponse à incident |
+| Sécurité web | Identifier les erreurs d’une application | OWASP, sessions, validation des entrées |
+| Cryptographie | Comprendre ce qui protège réellement les données | Hachage, chiffrement, clés publiques |
+| OSINT responsable | Chercher des informations sans franchir la ligne | Sources ouvertes, vérification, éthique |
 
-**Probability:** 0.03
+Les cours de démonstration sont présentés comme une interface produit fonctionnelle : progression locale dans le navigateur, filtres par niveau, cartes de cours, mini-quiz avec feedback immédiat et panneau de cours actif. Le site ne prétend pas remplacer une formation certifiante et rappelle l’importance d’un environnement légal de test.
 
-### 3. Circuit nocturne
-**Very Brief Intro:** Une direction sombre et énergique, structurée par des lignes orange, des halos et une sensation de console maker. L’ensemble valorise le côté expérimental et hacker du Flipper Zero.
-
-**Probability:** 0.09
-
-## Approche choisie — Signal de poche
+## Direction retenue — Terminal pédagogique
 
 ### Design Movement
-Swiss International Style revisité par l’esthétique des outils techniques portables et des manuels de terrain. La rigueur de la grille est conservée, mais la composition utilise des décalages, des repères et des blocs de signalisation plutôt qu’une page parfaitement centrée.
+Une rencontre entre le Swiss Style, les interfaces de centres d’opérations de sécurité et les manuels de laboratoire. La plateforme utilise une structure de tableau de bord, mais garde beaucoup d’espace, des titres éditoriaux et des zones pédagogiques calmes pour éviter l’effet « écran de hacker » caricatural.
 
 ### Core Principles
-- **Lire en mouvement :** chaque section doit guider l’œil du problème vers l’action, puis vers la vérification.
-- **Signal avant décoration :** l’orange sert à indiquer les actions, les connexions et les points importants ; il ne devient jamais un dégradé décoratif omniprésent.
-- **Technique rendue humaine :** les mots sont concrets, les étapes courtes et les limites clairement annoncées.
-- **Précision visible :** numérotation, badges d’état, repères et connecteurs visuels donnent confiance sans surcharger.
+- **Comprendre avant d’exécuter :** chaque action est introduite par une notion, un contexte et une conséquence.
+- **Progression visible :** niveaux, pourcentages, séries de cours et états terminés rendent l’apprentissage tangible.
+- **Contraste maîtrisé :** le graphite sert à la concentration, le blanc cassé à la lecture et le vert signal à l’état de réussite ; aucune lueur décorative excessive.
+- **Éthique intégrée :** les exercices sont orientés défense, observation et environnements autorisés.
 
 ### Color Philosophy
-Le blanc chaud (`#FFFDF8`) crée un espace de travail lumineux, lisible sur mobile et proche d’une fiche technique imprimée. L’orange signature (`#F36A2D`) évoque le bouton d’action, le câble actif et le signal qui circule. Le noir graphite (`#1D1E20`) porte les explications et évite l’aspect jouet ; les gris sable créent des zones de repos sans concurrence visuelle.
+Le fond principal graphite `#101315` évoque un espace de travail calme et concentré. Le blanc cassé `#F5F3EE` porte les surfaces de lecture. Le vert signal `#B7F36B` indique une progression validée, tandis que le corail `#FF775C` signale un point d’attention sans devenir une alerte anxiogène. Le bleu brume `#98A9C7` est réservé aux informations secondaires.
 
 ### Layout Paradigm
-Une structure en bandes décalées : l’introduction commence par une large scène à deux axes, puis les étapes prennent la forme d’un parcours vertical avec numéros surdimensionnés et cartes légèrement offset. Les sections alternent entre pleine largeur et colonne étroite afin d’éviter la succession de blocs centrés identiques.
+Une navigation latérale compacte organise les domaines, tandis que la zone principale alterne une bande de progression, une grille irrégulière de cours et un module de « mission du jour ». Sur mobile, la navigation devient une barre supérieure et les cartes passent en empilement vertical. L’interface conserve un fil d’Ariane clair et une action de retour sur les vues de cours.
 
 ### Signature Elements
-- Un **chemin de transfert** en pointillés orange qui relie téléphone, câble et Flipper Zero.
-- Des **étiquettes de statut** en capitales condensées : PRÊT, CONNECTÉ, VÉRIFIER.
-- Des **coins de fiche technique** et micro-repères de coordonnées pour donner au site une personnalité d’instrument.
+- Une **ligne de trace réseau** fine, utilisée comme séparateur et indicateur d’avancement.
+- Des **badges d’état** en capitales : EN COURS, VALIDÉ, À DÉCOUVRIR.
+- Un **motif de grille de laboratoire** très discret derrière les zones hero et les cartes d’exercice.
 
 ### Interaction Philosophy
-Les interactions doivent confirmer une action plutôt que divertir. Un clic révèle une étape ou copie une commande avec un retour immédiat. Les boutons se comportent comme des commandes physiques : légère compression au clic, déplacement court au survol et focus très visible au clavier.
+Les interactions doivent aider à apprendre : filtrer change réellement les cours visibles, cliquer sur une carte ouvre son résumé, et répondre à un quiz donne une explication avant le score. La progression est enregistrée localement, sans compte ni collecte de fichier. Les boutons ont un feedback rapide, les états actifs sont lisibles au clavier et les actions destructives sont absentes de la démonstration.
 
 ### Animation
-Les éléments de la première vue entrent avec un décalage de 50 ms entre eux, en translation courte et opacité, sans zoom spectaculaire. Les connecteurs orange se dessinent en 220 ms quand une étape est mise en avant. Les cartes changent seulement de bordure, d’ombre et de translation ; aucune animation ne doit déplacer le contenu de manière imprévisible. Toutes les animations non essentielles sont désactivées avec `prefers-reduced-motion`.
+Les transitions restent courtes et utiles : entrée progressive du tableau de bord, barre de progression qui s’anime une seule fois, cartes qui se soulèvent de 2 px au survol et quiz qui révèle son explication en fondu. Les animations sont désactivées avec `prefers-reduced-motion`.
 
 ### Typography System
-Titres en **Barlow Condensed**, poids 700 à 800, avec capitales mesurées et interlettrage légèrement négatif. Corps et interfaces en **DM Sans**, poids 400 à 700, pour une lecture confortable sur téléphone. Hiérarchie : H1 très large et compact, H2 en capitales avec petite étiquette orange au-dessus, paragraphes limités à 62 caractères par ligne, labels en 11–12 px avec espacement augmenté.
+Titres en **Space Grotesk**, poids 600–700, pour une signature contemporaine et technique. Corps en **DM Sans**, poids 400–600, pour une lecture confortable. Les chiffres de progression utilisent Space Grotesk avec des tabulations lisibles ; les labels système utilisent DM Sans en capitales, 10–11 px, avec espacement augmenté.
 
 ### Brand Essence
-**Le guide clair pour faire passer un fichier du téléphone au Flipper Zero, sans détour ni jargon inutile.**
+**Apprendre la cybersécurité par des notions claires, des parcours courts et des réflexes responsables.**
 
-Personnalité : **directe, ingénieuse, rassurante**.
+Personnalité : **curieuse, structurée, responsable**.
 
 ### Brand Voice
-Les titres sont courts et actifs. Les CTA parlent comme des commandes utiles, jamais comme des promesses vagues. Les microcopies précisent l’action et le résultat attendu.
+Les titres sont précis et encourageants. Les CTA décrivent l’action d’apprentissage plutôt qu’une promesse vague. Le site dit ce que l’utilisateur va comprendre, pas ce qu’il devrait ressentir.
 
 Exemples :
-- « Du téléphone au Flipper. Le chemin le plus court. »
-- « Vérifier le format avant d’envoyer »
+- « Comprendre le signal avant de suivre la trace. »
+- « Reprendre le cours là où tu t’es arrêté. »
 
 ### Wordmark & Logo
-Le symbole est un **éclair-flèche monogramme** : deux chevrons orange reliés par un point central, évoquant un fichier qui traverse une liaison. Le mot-symbole `fliptransfert` sera composé en Barlow Condensed avec une coupe orange dans le `t`, mais le pictogramme reste autonome pour l’avatar et le favicon.
+Le symbole CyberLearn est un **bouclier ouvert traversé par un curseur**, construit en formes géométriques simples. L’ouverture signifie que la sécurité se partage par la connaissance ; le curseur évoque l’apprentissage interactif. Le mot-symbole combine `Cyber` en blanc cassé et `Learn` en vert signal.
 
 ### Signature Brand Color
-**Orange Signal — `#F36A2D`**. C’est la couleur propriétaire du lien actif : assez chaude pour être mémorisable, assez sombre pour rester lisible en texte et suffisamment distincte des oranges génériques d’alerte.
+**Green Signal — `#B7F36B`**, la couleur de l’acquisition de compétence : elle s’allume quand une notion est comprise et reste assez douce pour ne pas fatiguer les yeux sur un fond sombre.
 
 ## Règle de décision
-Avant chaque choix visuel, vérifier : « Est-ce que cette décision renforce le sentiment d’un transfert simple, lisible et maîtrisé, ou est-ce qu’elle dilue le signal ? »
+Chaque composant doit répondre à la question : « Est-ce que cette décision rend la prochaine notion plus claire, la progression plus visible ou le comportement plus responsable ? »
+
+
+## Style Decisions
+
+- Le symbole CyberLearn — bouclier ouvert traversé par un curseur — reste la marque principale du header et sert aussi de repère de validation dans les cartes.
+- La ligne de trace réseau devient un motif structurel : elle relie le hero, la progression et la mission du jour, au lieu d’être seulement décorative.
+- Les états pédagogiques `EN COURS`, `VALIDÉ` et `À DÉCOUVRIR` sont affichés de façon cohérente sur les cours et les domaines.
+- La voix privilégie `comprendre`, `observer`, `protéger`, `vérifier` et `répondre`, en évitant les formulations qui glorifient l’attaque ou la transgression.

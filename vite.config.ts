@@ -216,7 +216,7 @@ export default defineConfig({
   },
   envDir: path.resolve(import.meta.dirname),
   root: path.resolve(import.meta.dirname, "client"),
-  base: process.env.GITHUB_ACTIONS ? "/fliptransfert/" : "/",
+  base: process.env.GITHUB_ACTIONS ? "/cyberlearn/" : "/",
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,

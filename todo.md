@@ -1,8 +1,11 @@
-# Correctif 404 GitHub Pages
+# Refonte CyberLearn
 
-- [x] Vérifier l’URL publique et le statut Pages du dépôt.
-- [x] Inspecter la configuration générée et les chemins de base/assets.
-- [x] Appliquer le correctif nécessaire à la publication.
-- [ ] Relancer le workflow GitHub Pages.
-- [ ] Vérifier la page publique et les assets sur mobile.
-- [ ] Livrer le lien corrigé.
+- [x] Définir l’architecture pédagogique et les domaines de cybersécurité.
+- [x] Définir la nouvelle direction visuelle CyberLearn et les contenus de démonstration.
+- [x] Remplacer l’identité fliptransfert par CyberLearn.
+- [x] Construire le tableau de bord d’apprentissage et les parcours de cours.
+- [x] Ajouter les interactions de progression, filtres et exercices de quiz.
+- [x] Générer et intégrer les nouveaux assets visuels de cybersécurité.
+- [x] Tester le responsive, les interactions et le build de production.
+- [ ] Republier automatiquement sur GitHub Pages.
+- [ ] Livrer le nouveau lien CyberLearn.

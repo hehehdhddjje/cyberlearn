@@ -1,27 +1,36 @@
 /*
- * Direction artistique — Signal de poche
- * Swiss editorial technique, orange Signal #F36A2D, blanc chaud, graphite.
- * Cette page guide l’œil du téléphone vers le Flipper avec repères, statuts et micro-interactions courtes.
+ * Direction artistique — CyberLearn / Terminal pédagogique
+ * Swiss Style + centre d’opérations calme : graphite, blanc cassé, vert Signal #B7F36B,
+ * progression visible, vocabulaire responsable et interactions orientées apprentissage.
  */
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
-  ArrowDown,
   ArrowRight,
-  Cable,
+  BookOpen,
   Check,
-  ChevronDown,
-  ClipboardCheck,
-  Copy,
-  Download,
-  FileUp,
-  Github,
-  Info,
-  LockKeyhole,
+  CheckCircle2,
+  ChevronRight,
+  CircleHelp,
+  Clock3,
+  Code2,
+  Crosshair,
+  ExternalLink,
+  FileText,
+  Filter,
+  GraduationCap,
+  KeyRound,
+  Lock,
   Menu,
-  Smartphone,
-  Usb,
-  Wifi,
+  Network,
+  Play,
+  Radar,
+  Search,
+  Shield,
+  ShieldCheck,
+  Sparkles,
+  Terminal,
+  Trophy,
   X,
   Zap,
 } from "lucide-react";
@@ -31,271 +40,125 @@ const asset = (manusPath: string, filename: string) =>
     ? `${import.meta.env.BASE_URL}assets/${filename}`
     : manusPath;
 
-const steps = [
-  {
-    number: "01",
-    label: "PRÉPARER",
-    title: "Choisir le bon fichier",
-    text: "Commence par identifier le type de fichier à déplacer. Le format et la taille déterminent la méthode la plus simple.",
-    details: ["Un fichier déjà présent dans le téléphone", "Un câble USB-C ou un lecteur de carte compatible", "Quelques minutes pour vérifier le résultat"],
-    accent: "orange",
-    icon: FileUp,
-  },
-  {
-    number: "02",
-    label: "CONNECTER",
-    title: "Créer le lien",
-    text: "Relie les appareils avec le bon adaptateur. Le téléphone doit reconnaître la destination avant tout transfert.",
-    details: ["Déverrouiller le téléphone", "Autoriser l’accès USB si une fenêtre apparaît", "Garder le câble immobile pendant la copie"],
-    accent: "graphite",
-    icon: Cable,
-  },
-  {
-    number: "03",
-    label: "VÉRIFIER",
-    title: "Confirmer l’arrivée",
-    text: "Ne retire pas le câble trop vite. Ouvre le fichier côté Flipper et vérifie qu’il correspond bien à la source.",
-    details: ["Contrôler le nom et la taille du fichier", "Tester le fichier dans le menu correspondant", "Éjecter proprement la carte si nécessaire"],
-    accent: "orange",
-    icon: ClipboardCheck,
-  },
+const courses = [
+  { id: "fondamentaux", icon: ShieldCheck, title: "Fondamentaux", description: "Les réflexes qui protègent chaque connexion.", level: "Débutant", duration: "2 h 40", lessons: 8, progress: 72, color: "lime", tag: "Essentiel" },
+  { id: "reseaux", icon: Network, title: "Réseaux", description: "Lire les échanges et comprendre les signaux.", level: "Intermédiaire", duration: "4 h 15", lessons: 12, progress: 38, color: "blue", tag: "Populaire" },
+  { id: "web", icon: Code2, title: "Sécurité web", description: "Repérer les failles avant qu’elles ne deviennent des incidents.", level: "Intermédiaire", duration: "3 h 50", lessons: 10, progress: 0, color: "coral", tag: "À découvrir" },
+  { id: "defense", icon: Radar, title: "Défense", description: "Trier, documenter et répondre avec méthode.", level: "Avancé", duration: "5 h 20", lessons: 14, progress: 0, color: "violet", tag: "À découvrir" },
 ];
 
-function scrollToId(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
+const domains = [
+  { icon: Shield, name: "Fondamentaux", count: "08 cours" },
+  { icon: Network, name: "Réseaux", count: "12 cours" },
+  { icon: Code2, name: "Sécurité web", count: "10 cours" },
+  { icon: KeyRound, name: "Cryptographie", count: "06 cours" },
+  { icon: Search, name: "OSINT responsable", count: "07 cours" },
+];
+
+const quizOptions = [
+  "Un mot de passe long et unique, stocké dans un gestionnaire",
+  "Le même mot de passe partout, mais changé souvent",
+  "Un mot de passe court avec plusieurs symboles",
+];
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [openStep, setOpenStep] = useState(0);
-  const [copied, setCopied] = useState(false);
+  const [activeFilter, setActiveFilter] = useState("Tous");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeCourse, setActiveCourse] = useState<string | null>(null);
+  const [quizAnswer, setQuizAnswer] = useState<number | null>(null);
+  const [quizDone, setQuizDone] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const filteredCourses = useMemo(() => {
+    if (activeFilter === "Tous") return courses;
+    return courses.filter((course) => course.level === activeFilter);
+  }, [activeFilter]);
 
-  const copyChecklist = async () => {
-    const content = [
-      "FLIPTRANSFERT — CHECKLIST",
-      "",
-      "[ ] Fichier identifié et compatible",
-      "[ ] Téléphone déverrouillé",
-      "[ ] Câble ou adaptateur connecté",
-      "[ ] Autorisation USB acceptée",
-      "[ ] Copie terminée",
-      "[ ] Fichier vérifié côté Flipper Zero",
-    ].join("\n");
-
-    try {
-      await navigator.clipboard.writeText(content);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2200);
-    } catch {
-      setCopied(false);
-    }
-  };
-
-  const downloadChecklist = () => {
-    const content = [
-      "FLIPTRANSFERT — CHECKLIST",
-      "Du téléphone au Flipper Zero, sans détour.",
-      "",
-      "[ ] Fichier identifié et compatible",
-      "[ ] Téléphone déverrouillé",
-      "[ ] Câble ou adaptateur connecté",
-      "[ ] Autorisation USB acceptée",
-      "[ ] Copie terminée",
-      "[ ] Fichier vérifié côté Flipper Zero",
-      "",
-      "Guide : https://github.com/",
-    ].join("\n");
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = "fliptransfert-checklist.txt";
-    anchor.click();
-    URL.revokeObjectURL(url);
+  const answerQuiz = (index: number) => {
+    setQuizAnswer(index);
+    setQuizDone(true);
   };
 
   return (
-    <div className="site-shell">
-      <header className="site-header">
-        <a className="brand" href="#top" onClick={closeMenu} aria-label="fliptransfert, retour en haut">
-          <span className="brand-mark" aria-hidden="true">
-            <img src={asset("/manus-storage/fliptransfert-logo_fbbb2bf4.png", "fliptransfert-logo.webp")} alt="" />
-          </span>
-          <span className="brand-name">flip<span>transfert</span></span>
-        </a>
-
-        <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label="Navigation principale">
-          <a href="#parcours" onClick={closeMenu}>Le parcours</a>
-          <a href="#materiel" onClick={closeMenu}>Matériel</a>
-          <a href="#checklist" onClick={closeMenu}>Checklist</a>
-          <a className="nav-github" href="https://github.com/" target="_blank" rel="noreferrer" onClick={closeMenu}>
-            <Github size={15} strokeWidth={2.2} />
-            GitHub
+    <div className="cyber-shell">
+      <aside className={sidebarOpen ? "sidebar is-open" : "sidebar"}>
+        <div className="sidebar-top">
+          <a className="cyber-brand" href="#dashboard" onClick={() => setSidebarOpen(false)}>
+            <span className="cyber-mark"><img src={asset("/manus-storage/cyberlearn-logo_3bb8b1a9.png", "cyberlearn-logo.webp")} alt="" /></span>
+            <span><strong>Cyber</strong><b>Learn</b><small>LAB / 001</small></span>
           </a>
-        </nav>
-
-        <button className="menu-toggle" type="button" aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
-          {menuOpen ? <X size={21} /> : <Menu size={21} />}
-        </button>
-      </header>
-
-      <main id="top">
-        <section className="hero-section">
-          <div className="hero-texture" aria-hidden="true" />
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <p className="eyebrow"><span className="eyebrow-dot" /> GUIDE DE TRANSFERT · V1.0</p>
-              <h1>Du téléphone<br /><em>au Flipper.</em><br /><span>Sans détour.</span></h1>
-              <p className="hero-lede">Le parcours clair pour déplacer un fichier, connecter les bons outils et vérifier qu’il est bien arrivé.</p>
-              <div className="hero-actions">
-                <button className="button button-primary" type="button" onClick={() => scrollToId("parcours")}>
-                  Voir le parcours <ArrowRight size={17} />
-                </button>
-                <button className="text-button" type="button" onClick={() => scrollToId("materiel")}>
-                  De quoi ai-je besoin ? <ArrowDown size={16} />
-                </button>
-              </div>
-              <div className="hero-meta">
-                <span><Check size={14} /> Méthode en 3 étapes</span>
-                <span><LockKeyhole size={14} /> Fichiers gardés sous contrôle</span>
-              </div>
-            </div>
-
-            <div className="hero-visual" aria-label="Illustration du transfert entre un téléphone et un Flipper Zero">
-              <div className="coordinate coordinate-top">N 48° 51′ 24″ &nbsp; / &nbsp; LINK 001</div>
-              <div className="visual-card">
-                <img src={asset("/manus-storage/fliptransfert-hero_0acd4e22.png", "fliptransfert-hero.webp")} alt="Téléphone relié par un câble orange à un Flipper Zero" />
-                <div className="visual-stamp"><span>TRANSFER</span><strong>READY</strong></div>
-                <span className="visual-corner visual-corner-tl" />
-                <span className="visual-corner visual-corner-br" />
-              </div>
-              <div className="visual-caption"><span className="signal-line" /> SOURCE <strong>PHONE</strong><span className="signal-line signal-line-short" /> DESTINATION <strong>FLIPPER</strong></div>
-              <div className="coordinate coordinate-bottom">DATA PATH / 03—A &nbsp; · &nbsp; CHECKSUM PENDING</div>
-            </div>
-          </div>
-          <div className="hero-scroll"><span>FAIRE DÉFILER</span><span className="scroll-line" /></div>
-        </section>
-
-        <section className="intro-strip" aria-label="Résumé du parcours">
-          <div className="container strip-inner">
-            <p><span className="strip-index">00</span> Le principe</p>
-            <h2>Un transfert réussi,<br /><span>c’est un transfert vérifié.</span></h2>
-            <p className="strip-description">Pas besoin de deviner. On sépare le parcours en trois signaux simples : le fichier, la connexion, puis la confirmation.</p>
-          </div>
-        </section>
-
-        <section className="steps-section" id="parcours">
-          <div className="container">
-            <div className="section-heading split-heading">
-              <div>
-                <p className="section-kicker">01 / LE PARCOURS</p>
-                <h2>Trois signaux.<br /><span>Un seul chemin.</span></h2>
-              </div>
-              <p className="heading-aside">Suis l’ordre, prends le temps de vérifier chaque état et garde le contrôle du fichier jusqu’à sa destination.</p>
-            </div>
-
-            <div className="steps-layout">
-              <div className="step-rail" aria-hidden="true">
-                <span className="rail-dot active" />
-                <span className="rail-segment" />
-                <span className="rail-dot" />
-                <span className="rail-segment" />
-                <span className="rail-dot" />
-              </div>
-              <div className="steps-list">
-                {steps.map((step, index) => {
-                  const Icon = step.icon;
-                  const isOpen = openStep === index;
-                  return (
-                    <article className={`step-card ${isOpen ? "is-open" : ""} accent-${step.accent}`} key={step.number}>
-                      <button className="step-trigger" type="button" aria-expanded={isOpen} onClick={() => setOpenStep(isOpen ? -1 : index)}>
-                        <span className="step-number">{step.number}</span>
-                        <span className="step-icon"><Icon size={20} strokeWidth={1.8} /></span>
-                        <span className="step-main"><span className="step-label">{step.label}</span><strong>{step.title}</strong></span>
-                        <span className="step-toggle"><ChevronDown size={19} /></span>
-                      </button>
-                      <div className="step-details" aria-hidden={!isOpen}>
-                        <p>{step.text}</p>
-                        <ul>{step.details.map((detail) => <li key={detail}><Check size={14} />{detail}</li>)}</ul>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="equipment-section" id="materiel">
-          <div className="container equipment-grid">
-            <div className="equipment-image">
-              <img src={asset("/manus-storage/fliptransfert-process_2bb86617.png", "fliptransfert-process.webp")} alt="Téléphone, câble USB, carte microSD et Flipper Zero sur un bureau clair" loading="lazy" />
-              <span className="image-label label-one">SOURCE</span>
-              <span className="image-label label-two">LINK</span>
-              <span className="image-label label-three">TARGET</span>
-            </div>
-            <div className="equipment-copy">
-              <p className="section-kicker">02 / LE KIT MINIMUM</p>
-              <h2>Pas plus de<br /><span>trois choses.</span></h2>
-              <p>Le bon transfert commence avec le bon chemin physique. Rassemble l’essentiel avant d’ouvrir ton fichier.</p>
-              <div className="kit-list">
-                <div className="kit-item"><span className="kit-icon"><Smartphone size={18} /></span><span><strong>Un téléphone</strong><small>Source du fichier</small></span></div>
-                <div className="kit-item"><span className="kit-icon"><Usb size={18} /></span><span><strong>Un câble ou adaptateur</strong><small>Le lien entre les deux</small></span></div>
-                <div className="kit-item"><span className="kit-icon"><Zap size={18} /></span><span><strong>Un Flipper Zero</strong><small>Destination du fichier</small></span></div>
-              </div>
-              <div className="note-box"><Info size={17} /><p>Les noms de menus peuvent varier selon le téléphone, le câble et le type de fichier. Le principe reste identique : <strong>connecter, copier, vérifier.</strong></p></div>
-            </div>
-          </div>
-        </section>
-
-        <section className="detail-section">
-          <div className="container detail-grid">
-            <div className="detail-copy">
-              <p className="section-kicker">03 / LE BON RÉFLEXE</p>
-              <h2>Ne confonds pas<br /><span>copié et terminé.</span></h2>
-              <p>Le signal le plus important arrive à la fin. Un fichier qui apparaît dans un dossier n’est pas encore un fichier validé.</p>
-              <div className="status-stack">
-                <div className="status-row"><span className="status-mark status-orange">01</span><span><strong>Copie terminée</strong><small>La barre ou la notification disparaît.</small></span></div>
-                <div className="status-row"><span className="status-mark status-graphite">02</span><span><strong>Fichier retrouvé</strong><small>Le nom et la taille correspondent.</small></span></div>
-                <div className="status-row"><span className="status-mark status-orange">03</span><span><strong>Fichier testé</strong><small>Le Flipper peut bien l’utiliser.</small></span></div>
-              </div>
-            </div>
-            <div className="detail-image">
-              <img src={asset("/manus-storage/fliptransfert-detail_9d64ac0e.png", "fliptransfert-detail.webp")} alt="Détail d’un câble orange entre un téléphone et un Flipper Zero" loading="lazy" />
-              <div className="detail-callout"><span className="callout-line" /> <strong>CHECK</strong><span>01—03</span></div>
-            </div>
-          </div>
-        </section>
-
-        <section className="checklist-section" id="checklist">
-          <div className="container checklist-card">
-            <div className="checklist-topline"><span>FLIPTRANSFERT / CHECKLIST</span><span>READY TO RUN</span></div>
-            <div className="checklist-content">
-              <div>
-                <p className="section-kicker">04 / AVANT DE PARTIR</p>
-                <h2>Le dernier contrôle<br /><span>est le bon.</span></h2>
-                <p>Copie la checklist dans tes notes ou télécharge-la en fichier texte. Elle tient sur un écran et évite les oublis.</p>
-              </div>
-              <div className="checklist-actions">
-                <button className="button button-dark" type="button" onClick={copyChecklist}>{copied ? <Check size={17} /> : <Copy size={17} />}{copied ? "Checklist copiée" : "Copier la checklist"}</button>
-                <button className="button button-outline" type="button" onClick={downloadChecklist}><Download size={17} /> Télécharger .txt</button>
-              </div>
-            </div>
-            <div className="checklist-footer"><span><Wifi size={14} /> Aucun compte requis</span><span><LockKeyhole size={14} /> Tes fichiers ne passent pas par ce site</span><span className="footer-arrow"><ArrowRight size={17} /></span></div>
-          </div>
-        </section>
-      </main>
-
-      <footer className="site-footer">
-        <div className="container footer-inner">
-          <a className="brand footer-brand" href="#top"><span className="brand-mark"><img src={asset("/manus-storage/fliptransfert-logo_fbbb2bf4.png", "fliptransfert-logo.webp")} alt="" /></span><span className="brand-name">flip<span>transfert</span></span></a>
-          <p>Un guide simple pour passer du téléphone au Flipper Zero.</p>
-          <div className="footer-links"><a href="#parcours">Le parcours</a><a href="#checklist">Checklist</a><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub <Github size={14} /></a></div>
+          <button className="sidebar-close" type="button" onClick={() => setSidebarOpen(false)} aria-label="Fermer le menu"><X size={18} /></button>
         </div>
-        <div className="container legal-line"><span>© 2026 fliptransfert</span><span>BUILD 001 / SIGNAL DE POCHE</span></div>
-      </footer>
+        <div className="sidebar-label">ESPACE D’APPRENTISSAGE</div>
+        <nav className="side-nav">
+          <a className="active" href="#dashboard" onClick={() => setSidebarOpen(false)}><span className="nav-icon"><Radar size={17} /></span>Vue d’ensemble</a>
+          <a href="#courses" onClick={() => setSidebarOpen(false)}><span className="nav-icon"><BookOpen size={17} /></span>Mes cours <i>3</i></a>
+          <a href="#domains" onClick={() => setSidebarOpen(false)}><span className="nav-icon"><Network size={17} /></span>Domaines</a>
+          <a href="#mission" onClick={() => setSidebarOpen(false)}><span className="nav-icon"><Crosshair size={17} /></span>Mission du jour</a>
+        </nav>
+        <div className="sidebar-label sidebar-domain-label">DOMAINES</div>
+        <div className="domain-nav">
+          {domains.slice(0, 4).map((domain) => { const Icon = domain.icon; return <a href="#courses" key={domain.name} onClick={() => setSidebarOpen(false)}><Icon size={15} />{domain.name}</a>; })}
+        </div>
+        <div className="sidebar-bottom">
+          <div className="ethics-card"><Shield size={16} /><div><strong>Zone éthique</strong><span>Apprendre. Tester. Autoriser.</span></div></div>
+          <a className="github-link" href="https://github.com/hehehdhddjje/cyberlearn" target="_blank" rel="noreferrer"><ExternalLink size={14} />Voir le projet sur GitHub</a>
+        </div>
+      </aside>
+
+      <div className="main-column">
+        <header className="topbar">
+          <button className="mobile-menu" type="button" onClick={() => setSidebarOpen(true)} aria-label="Ouvrir le menu"><Menu size={20} /></button>
+          <div className="breadcrumbs"><span>CYBERLEARN</span><ChevronRight size={13} /><strong>TABLEAU DE BORD</strong></div>
+          <div className="topbar-right"><span className="online-status"><i /> SYSTÈME OPÉRATIONNEL</span><span className="avatar">CL</span></div>
+        </header>
+
+        <main id="dashboard">
+          <section className="welcome-section">
+            <div className="welcome-copy">
+              <p className="eyebrow"><span className="pulse-dot" /> SESSION D’APPRENTISSAGE / 07</p>
+              <h1>Comprendre le signal.<br /><span>Protéger la suite.</span></h1>
+              <p className="welcome-lede">Des cours courts, des exercices guidés et les bons réflexes pour progresser dans la cybersécurité, à ton rythme.</p>
+              <div className="welcome-actions"><a className="primary-action" href="#courses">Reprendre mon parcours <ArrowRight size={16} /></a><a className="quiet-action" href="#domains">Explorer les domaines <ChevronRight size={15} /></a></div>
+            </div>
+            <div className="welcome-visual"><img src={asset("/manus-storage/cyberlearn-hero_d7616f5f.png", "cyberlearn-hero.webp")} alt="Illustration d’un laboratoire d’apprentissage de la cybersécurité" /><div className="visual-readout"><span><i /> LIVE</span><small>TRACE / 07—A</small></div><div className="visual-coordinates">45.7640° N &nbsp; 4.8357° E</div></div>
+            <div className="trace-path" aria-hidden="true"><span className="trace-node trace-node-one" /><span className="trace-node trace-node-two" /><span className="trace-node trace-node-three" /><span className="trace-path-line" /></div>
+          </section>
+
+          <section className="progress-section" aria-label="Progression globale">
+            <div className="progress-label"><span>PROGRESSION GLOBALE</span><strong>34<small>%</small></strong></div>
+            <div className="progress-track"><span style={{ width: "34%" }} /></div>
+            <div className="progress-meta"><span>11 leçons terminées</span><span>sur 32 au total</span></div>
+            <div className="streak"><Zap size={15} /><span><strong>4 jours</strong><small>de série</small></span></div>
+          </section>
+
+          <section className="courses-section" id="courses">
+            <div className="section-topline"><div><p className="section-kicker">01 / CONTINUER À APPRENDRE</p><h2>Ton parcours<br /><span>en cours.</span></h2></div><a className="view-all" href="#domains">Voir tous les cours <ArrowRight size={15} /></a></div>
+            <div className="filter-row"><Filter size={14} /><span>FILTRER PAR NIVEAU</span>{["Tous", "Débutant", "Intermédiaire", "Avancé"].map((filter) => <button key={filter} className={activeFilter === filter ? "filter active" : "filter"} type="button" onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div>
+            <div className="course-grid">
+              {filteredCourses.map((course) => { const Icon = course.icon; const isActive = activeCourse === course.id; return <article className={`course-card color-${course.color} ${isActive ? "is-active" : ""}`} key={course.id} onClick={() => setActiveCourse(isActive ? null : course.id)}>
+                <div className="course-card-top"><span className="course-icon"><Icon size={19} /></span><span className="course-badges"><span className={`course-status ${course.progress > 0 ? "status-progress" : "status-new"}`}>{course.progress > 0 ? "EN COURS" : "À DÉCOUVRIR"}</span><span className="course-tag">{course.tag}</span></span></div>
+                <h3>{course.title}</h3><p>{course.description}</p>
+                <div className="course-details"><span><GraduationCap size={14} />{course.level}</span><span><Clock3 size={14} />{course.duration}</span><span><FileText size={14} />{course.lessons} leçons</span></div>
+                <div className="course-progress"><div className="mini-track"><span style={{ width: `${course.progress}%` }} /></div><strong>{course.progress}%</strong></div>
+                {isActive && <div className="course-expanded"><p>{course.progress > 0 ? "Reprends là où tu t’es arrêté. La prochaine leçon explique comment reconnaître une authentification solide." : "Commence par une courte introduction, puis passe à un exercice guidé dans un environnement autorisé."}</p><button type="button" onClick={(event) => { event.stopPropagation(); document.getElementById("mission")?.scrollIntoView({ behavior: "smooth" }); }}>{course.progress > 0 ? "Reprendre la leçon" : "Voir le programme"}<ArrowRight size={14} /></button></div>}
+              </article>; })}
+            </div>
+          </section>
+
+          <section className="mission-section" id="mission">
+            <div className="mission-image"><img src={asset("/manus-storage/cyberlearn-lab_6a8fa266.png", "cyberlearn-lab.webp")} alt="Table de laboratoire utilisée pour une mission de cybersécurité" loading="lazy" /><div className="mission-image-label"><span>MISSION 004</span><strong>OBSERVER<br />AVANT D’AGIR</strong></div></div>
+            <div className="mission-copy"><p className="section-kicker">02 / MISSION DU JOUR</p><div className="mission-title-row"><h2>Le bon réflexe<br /><span>du jour.</span></h2><span className="mission-status">MISSION ACTIVE · + 120 XP</span></div><p>Quel choix réduit le mieux le risque lié aux mots de passe réutilisés ? Prends quelques secondes pour raisonner, puis lis l’explication.</p>
+              <div className="quiz-box"><div className="quiz-head"><span><CircleHelp size={15} /> QUESTION 01 / 01</span><span>{quizDone ? "RÉPONSE ENREGISTRÉE" : "À FAIRE"}</span></div><h3>Quelle pratique est la plus robuste pour un compte important ?</h3><div className="quiz-options">{quizOptions.map((option, index) => <button className={quizAnswer === index ? (index === 0 ? "quiz-option correct" : "quiz-option wrong") : "quiz-option"} type="button" key={option} onClick={() => answerQuiz(index)}><span>{String.fromCharCode(65 + index)}</span>{option}{quizAnswer === index && (index === 0 ? <CheckCircle2 size={16} /> : <X size={16} />)}</button>)}</div>{quizDone && <div className="quiz-feedback">{quizAnswer === 0 ? <><CheckCircle2 size={16} /><span><strong>Bonne réponse.</strong> Une phrase longue et unique, gérée par un gestionnaire, réduit les réutilisations et facilite la rotation.</span></> : <><CircleHelp size={16} /><span><strong>À revoir.</strong> La longueur et l’unicité comptent davantage que la complexité visuelle. Consulte la leçon sur les identifiants.</span></>}</div>}</div>
+            </div>
+          </section>
+
+          <section className="domains-section" id="domains"><div className="section-topline"><div><p className="section-kicker">03 / EXPLORER</p><h2>Choisis ton<br /><span>angle d’observation.</span></h2></div><p className="section-note">Chaque domaine est découpé en modules courts. Commence par les fondamentaux, puis élargis ta vision.</p></div><div className="domain-grid">{domains.map((domain, index) => { const Icon = domain.icon; return <a className="domain-card" href="#courses" key={domain.name}><span className="domain-index">0{index + 1}</span><span className="domain-icon"><Icon size={19} /></span><strong>{domain.name}</strong><small>{domain.count}</small><span className={index === 0 ? "domain-status status-done" : "domain-status"}>{index === 0 ? "VALIDÉ" : "À DÉCOUVRIR"}</span><ArrowRight size={16} /></a>; })}</div></section>
+
+          <section className="ethics-banner"><div className="ethics-banner-icon"><Shield size={22} /></div><div><p className="section-kicker">RÈGLE DE BASE</p><h2>La curiosité a besoin<br /><span>d’un cadre.</span></h2></div><p>Les exercices CyberLearn sont conçus pour des environnements de test autorisés. Apprendre la sécurité, c’est aussi savoir où s’arrête son périmètre.</p><a href="#domains" className="ethics-cta">Lire notre approche <ArrowRight size={15} /></a></section>
+        </main>
+
+        <footer className="cyber-footer"><span>CYBERLEARN / LAB 001</span><span>APPRENDRE · OBSERVER · PROTÉGER</span><span>© 2026</span></footer>
+      </div>
     </div>
   );
 }
